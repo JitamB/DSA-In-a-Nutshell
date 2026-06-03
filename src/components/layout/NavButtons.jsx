@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { getAdjacentModules } from '../../data/nav.js';
+import { getAdjacentModules, MODULES } from '../../data/nav.js';
 
 /**
  * Module-level prev/next navigation bar rendered at the bottom of each page.
@@ -22,7 +22,7 @@ export default function NavButtons({ moduleId }) {
       </button>
 
       <span className="module-nav-center">
-        {moduleId} / 18
+        {moduleId} / {MODULES.length}
       </span>
 
       <button

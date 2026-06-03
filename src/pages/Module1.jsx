@@ -75,7 +75,7 @@ export default function Module1() {
         {sectionMap[active]}
       </div>
 
-      <NavButtons moduleId={1} />
+      <NavButtons moduleId={101} />
     </div>
   );
 }

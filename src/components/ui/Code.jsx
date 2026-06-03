@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Highlight, themes } from 'prism-react-renderer';
 
 /**
  * Polished code block with:
@@ -6,6 +7,7 @@ import { useState } from 'react';
  * - Dark gradient background
  * - Monospace body with horizontal scroll
  * - Optional multi-language tabs (e.g. C++ and Python)
+ * - Syntax highlighting via prism-react-renderer
  */
 export function Code({ children, lang = 'python' }) {
   const [copied, setCopied] = useState(false);
@@ -54,6 +56,7 @@ export function Code({ children, lang = 'python' }) {
   };
 
   const content = isMulti ? children[activeTab] : children;
+  const displayLang = isMulti ? activeTab : lang;
 
   return (
     <div className="code-block">
@@ -70,7 +73,19 @@ export function Code({ children, lang = 'python' }) {
         </button>
       </div>
       <div className="code-block-body">
-        <pre>{content}</pre>
+        <Highlight theme={themes.vsDark} code={content || ''} language={displayLang === 'c++' ? 'cpp' : displayLang}>
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={{ ...style, backgroundColor: 'transparent', margin: 0 }}>
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
       </div>
     </div>
   );

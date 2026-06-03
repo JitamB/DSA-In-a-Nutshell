@@ -219,9 +219,17 @@
   border-radius: 50%;
 }
 
-.code-block-dot.red    { background: #FF5F56; }
-.code-block-dot.yellow { background: #FFBD2E; }
-.code-block-dot.green  { background: #27C93F; }
+.code-block-dot.red {
+  background: #FF5F56;
+}
+
+.code-block-dot.yellow {
+  background: #FFBD2E;
+}
+
+.code-block-dot.green {
+  background: #27C93F;
+}
 
 .code-block-copy {
   display: flex;
@@ -265,7 +273,7 @@
   tab-size: 4;
 }
 
-/* ── Math block ────────────────────────────────────────────── */
+/* ── Math block (monospace verbatim) ───────────────────────── */
 .math-block {
   display: block;
   font-family: var(--font-mono);
@@ -275,10 +283,64 @@
   border-radius: var(--border-radius-md);
   margin: 0.75rem 0;
   color: var(--color-text-primary);
-  border-left: 3px solid var(--color-border-info);
+  /* border-left: 3px solid var(--color-border-info); */
   white-space: pre;
   overflow-x: auto;
   line-height: 1.65;
+}
+
+/* ── Math block (KaTeX display mode) ───────────────────────── */
+/* .math-block-katex {
+  display: block;
+  background: var(--color-background-secondary);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--border-radius-md);
+  margin: 0.75rem 0;
+  border-left: 3px solid var(--color-border-info);
+  overflow-x: auto;
+  text-align: center;
+} */
+
+.math-block-katex {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+  margin: 0.75rem auto;
+  overflow-x: visible;
+  text-align: center;
+}
+
+.math-block-katex>.katex-display {
+  max-width: 100%;
+  overflow-x: visible;
+  font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+  /* Dynamically shrinks font size on small screens */
+}
+
+
+/* .math-block-katex .katex-display {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+} */
+
+.math-block-katex .katex {
+  font-size: 1.1em;
+  color: var(--color-text-primary);
+}
+
+/* ── Math inline (KaTeX) ───────────────────────────────────── */
+.math-inline-katex {
+  display: inline;
+  padding: 0 2px;
+}
+
+.math-inline-katex .katex {
+  font-size: 1em;
+  color: var(--color-text-primary);
 }
 
 .math-inline {
@@ -287,9 +349,11 @@
   padding: 0 4px;
   border-radius: 3px;
   background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
   margin: 0 2px;
-  color: var(--color-text-primary);
+  color: inherit;
 }
+
 
 /* ── Note callout ──────────────────────────────────────────── */
 .note {
@@ -310,11 +374,35 @@
   margin-top: 1px;
 }
 
-.note.info    { background: var(--color-background-info);    border-color: var(--color-border-info);    color: var(--color-text-info);    }
-.note.success { background: var(--color-background-success); border-color: var(--color-border-success); color: var(--color-text-success); }
-.note.warning { background: var(--color-background-warning); border-color: var(--color-border-warning); color: var(--color-text-warning); }
-.note.danger  { background: var(--color-background-danger);  border-color: var(--color-border-danger);  color: var(--color-text-danger);  }
-.note.purple  { background: var(--color-background-purple);  border-color: var(--color-border-purple);  color: var(--color-text-purple);  }
+.note.info {
+  background: var(--color-background-info);
+  border-color: var(--color-border-info);
+  color: var(--color-text-info);
+}
+
+.note.success {
+  background: var(--color-background-success);
+  border-color: var(--color-border-success);
+  color: var(--color-text-success);
+}
+
+.note.warning {
+  background: var(--color-background-warning);
+  border-color: var(--color-border-warning);
+  color: var(--color-text-warning);
+}
+
+.note.danger {
+  background: var(--color-background-danger);
+  border-color: var(--color-border-danger);
+  color: var(--color-text-danger);
+}
+
+.note.purple {
+  background: var(--color-background-purple);
+  border-color: var(--color-border-purple);
+  color: var(--color-text-purple);
+}
 
 /* ── Q&A accordion ──────────────────────────────────────────── */
 .qa-item {
@@ -347,9 +435,21 @@
   background: var(--color-background-secondary);
 }
 
-.qa-q-text { flex: 1; line-height: 1.5; }
-.qa-chevron { font-size: 14px; flex-shrink: 0; margin-top: 2px; transition: transform 0.2s; }
-.qa-trigger[aria-expanded="true"] .qa-chevron { transform: rotate(180deg); }
+.qa-q-text {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.qa-chevron {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: transform 0.2s;
+}
+
+.qa-trigger[aria-expanded="true"] .qa-chevron {
+  transform: rotate(180deg);
+}
 
 .qa-body {
   padding: 11px 15px;
@@ -371,11 +471,30 @@
   margin-bottom: 3px;
 }
 
-.badge.info    { background: var(--color-background-info);    color: var(--color-text-info);    }
-.badge.success { background: var(--color-background-success); color: var(--color-text-success); }
-.badge.warning { background: var(--color-background-warning); color: var(--color-text-warning); }
-.badge.danger  { background: var(--color-background-danger);  color: var(--color-text-danger);  }
-.badge.purple  { background: var(--color-background-purple);  color: var(--color-text-purple);  }
+.badge.info {
+  background: var(--color-background-info);
+  color: var(--color-text-info);
+}
+
+.badge.success {
+  background: var(--color-background-success);
+  color: var(--color-text-success);
+}
+
+.badge.warning {
+  background: var(--color-background-warning);
+  color: var(--color-text-warning);
+}
+
+.badge.danger {
+  background: var(--color-background-danger);
+  color: var(--color-text-danger);
+}
+
+.badge.purple {
+  background: var(--color-background-purple);
+  color: var(--color-text-purple);
+}
 
 /* ── Info Card ──────────────────────────────────────────────── */
 .info-card {
@@ -395,11 +514,35 @@
   line-height: 1.65;
 }
 
-.info-card.info    { background: var(--color-background-info);    border-color: var(--color-border-info);    color: var(--color-text-info);    }
-.info-card.success { background: var(--color-background-success); border-color: var(--color-border-success); color: var(--color-text-success); }
-.info-card.warning { background: var(--color-background-warning); border-color: var(--color-border-warning); color: var(--color-text-warning); }
-.info-card.danger  { background: var(--color-background-danger);  border-color: var(--color-border-danger);  color: var(--color-text-danger);  }
-.info-card.purple  { background: var(--color-background-purple);  border-color: var(--color-border-purple);  color: var(--color-text-purple);  }
+.info-card.info {
+  background: var(--color-background-info);
+  border-color: var(--color-border-info);
+  color: var(--color-text-info);
+}
+
+.info-card.success {
+  background: var(--color-background-success);
+  border-color: var(--color-border-success);
+  color: var(--color-text-success);
+}
+
+.info-card.warning {
+  background: var(--color-background-warning);
+  border-color: var(--color-border-warning);
+  color: var(--color-text-warning);
+}
+
+.info-card.danger {
+  background: var(--color-background-danger);
+  border-color: var(--color-border-danger);
+  color: var(--color-text-danger);
+}
+
+.info-card.purple {
+  background: var(--color-background-purple);
+  border-color: var(--color-border-purple);
+  color: var(--color-text-purple);
+}
 
 /* ── Grid layout helper ─────────────────────────────────────── */
 .dl-grid {
@@ -408,11 +551,20 @@
   margin: 0.75rem 0;
 }
 
-.dl-grid-2 { grid-template-columns: repeat(2, 1fr); }
-.dl-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.dl-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dl-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
 
 @media (max-width: 600px) {
-  .dl-grid-2, .dl-grid-3 { grid-template-columns: 1fr; }
+
+  .dl-grid-2,
+  .dl-grid-3 {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── VizBox ─────────────────────────────────────────────────── */
@@ -434,7 +586,10 @@
   margin: 4px 0;
 }
 
-.slider-row-label { color: var(--color-text-secondary); }
+.slider-row-label {
+  color: var(--color-text-secondary);
+}
+
 .slider-row-value {
   color: var(--color-text-primary);
   font-family: var(--font-mono);
