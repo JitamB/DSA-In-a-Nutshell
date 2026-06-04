@@ -12,3 +12,4 @@ src/pages/Module1.jsx
 src/pages/Module2.jsx
 src/pages/MLPForward.jsx
 src/pages/CNNFundamentals.jsx
+src/pages/KerasFunctional.jsx
