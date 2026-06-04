@@ -10,12 +10,12 @@ import { P } from './components/ui/Typography.jsx';
 
 const PAGE_MAP = {
   // ── Legacy mock/reference modules ─────────────────────────────
-  101: lazy(() => import('./pages/Module1.jsx')),
-  102: lazy(() => import('./pages/Module2.jsx')),
-  103: lazy(() => import('./pages/MLPForward.jsx')),
-  104: lazy(() => import('./pages/CNNFundamentals.jsx')),
-  105: lazy(() => import('./pages/KerasFunctional.jsx')),
-  // ── New DSA modules will be added here ────────────────────────
+  // 101: lazy(() => import('./pages/Module1.jsx')),
+  // 102: lazy(() => import('./pages/Module2.jsx')),
+  // 103: lazy(() => import('./pages/MLPForward.jsx')),
+  // 104: lazy(() => import('./pages/CNNFundamentals.jsx')),
+  // 105: lazy(() => import('./pages/KerasFunctional.jsx')),
+  // ── New DSA modules ────────────────────────
   1: lazy(() => import('./pages/BasicSyntax.jsx')),
   2: lazy(() => import('./pages/AsymptoticAnalysis.jsx')),
   3: lazy(() => import('./pages/Arrays.jsx')),
@@ -43,7 +43,7 @@ const PAGE_MAP = {
   25: lazy(() => import('./pages/DPTrees.jsx')),
   26: lazy(() => import('./pages/DPBitmask.jsx')),
 
-
+  //—— Core CS ————————————————————
   49: lazy(() => import('./pages/OOP.jsx')),
   50: lazy(() => import('./pages/OS.jsx')),
   51: lazy(() => import('./pages/DBMS.jsx')),
