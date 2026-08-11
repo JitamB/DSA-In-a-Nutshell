@@ -2,6 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/DSA-In-a-Nutshell/',
+  base: process.env.DEPLOY_BASE || '/DSA-In-a-Nutshell/',
   plugins: [react()],
 })
